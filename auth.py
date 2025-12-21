@@ -1,8 +1,8 @@
-# auth.py
-# US1 – Customer Login
-# This function allows a customer to log in using OTP verification
-
 from utils import generate_otp, audit
+
+
+ADMIN_USER = "admin"
+ADMIN_PASS = "admin@123"
 
 def customer_login():
     contact = input("Enter contact number: ")
@@ -17,3 +17,14 @@ def customer_login():
     else:
         print("Invalid OTP.")
         return None
+    
+def admin_login():
+    user = input("Username: ")
+    pwd = input("Password: ")
+
+    if user == ADMIN_USER and pwd == ADMIN_PASS:
+        audit("Admin login success")
+        return True
+    else:
+        print("Invalid admin credentials.")
+        return False
