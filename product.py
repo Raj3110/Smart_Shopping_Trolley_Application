@@ -31,3 +31,28 @@ def add_product():
 
     save_products(products)
     print("✅ Product added successfully.")
+
+
+def update_product():
+    products = list_products()
+    if not products:
+        return
+
+    try:
+        idx = int(input("Select product number: ")) - 1
+        p = products[idx]
+
+        name = input("New name (Enter to skip): ")
+        price = input("New price (Enter to skip): ")
+        code = input("New code (Enter to skip): ")
+
+        if name:
+            p["name"] = name
+        if price:
+            p["price"] = float(price)
+        if code:
+            p["code"] = code
+
+        save_products(products)
+    except:
+        print("Invalid selection.")
