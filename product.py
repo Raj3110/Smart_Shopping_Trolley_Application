@@ -30,7 +30,7 @@ def add_product():
     })
 
     save_products(products)
-    print("✅ Product added successfully.")
+    print("Product added successfully.")
 
 
 def update_product():

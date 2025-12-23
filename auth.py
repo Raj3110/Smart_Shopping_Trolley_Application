@@ -12,7 +12,7 @@ def customer_login():
     entered = input("Enter OTP: ")
     if entered == str(otp):
         audit(f"Customer login success: {contact}")
-        print(f"\n🎉 Welcome to Smart Mart, {contact}! Happy shopping 🛒\n")
+        print(f"\n Welcome to Smart Mart, {contact}! Happy shopping 🛒\n")
         return contact
     else:
         print("Invalid OTP.")
