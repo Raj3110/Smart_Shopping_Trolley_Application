@@ -58,3 +58,35 @@ def add_to_cart(cart):
                 "quantity": quantity
             })
             return
+
+# US9 – Remove Item from Cart
+# Allows customer to remove item or reduce quantity
+
+def remove_from_cart(cart):
+    if not cart:
+        print("Cart empty.")
+        return
+
+    print("\nCart Items:")
+    for i, item in enumerate(cart, 1):
+        print(f"{i}. {item['name']} | Qty: {item['quantity']}")
+
+    try:
+        idx = int(input("Item number to remove: ")) - 1
+        item = cart[idx]
+
+        qty_input = input("Enter quantity to remove (Enter for full remove): ")
+
+        if not qty_input:
+            cart.pop(idx)
+            audit(f"Removed from cart: {item['name']}")
+            return
+
+        if qty_input.isdigit():
+            qty = int(qty_input)
+            if qty >= item["quantity"]:
+                cart.pop(idx)
+            else:
+                item["quantity"] -= qty
+    except:
+        print("Invalid selection.")
