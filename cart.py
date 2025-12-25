@@ -90,3 +90,15 @@ def remove_from_cart(cart):
                 item["quantity"] -= qty
     except:
         print("Invalid selection.")
+
+# Displays all items currently in the cart
+
+def view_cart(cart, contact):
+    if not cart:
+        print("Your cart is empty.")
+        return
+
+    print("\nYOUR CART")
+    for i, item in enumerate(cart, start=1):
+        total = item["price"] * item["quantity"]
+        print(f"{i}. {item['name']} | Qty: {item['quantity']} | Total: {total}")
