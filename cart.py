@@ -122,3 +122,12 @@ def view_cart(cart, contact):
                 audit(f"Quantity updated for {cart[idx]['name']}")
         elif choice == "2":
             return
+        
+# Allows customer to safely exit cart view
+
+def view_cart(cart, contact):
+    while True:
+        print("1. Back to menu")
+        choice = input("Choice: ")
+        if choice == "1":
+            return
