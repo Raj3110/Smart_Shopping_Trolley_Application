@@ -102,3 +102,23 @@ def view_cart(cart, contact):
     for i, item in enumerate(cart, start=1):
         total = item["price"] * item["quantity"]
         print(f"{i}. {item['name']} | Qty: {item['quantity']} | Total: {total}")
+
+# Allows customer to change quantity of an item in cart
+
+def view_cart(cart, contact):
+    while True:
+        for i, item in enumerate(cart, start=1):
+            print(f"{i}. {item['name']} | Qty: {item['quantity']}")
+
+        print("1. Modify quantity")
+        print("2. Back")
+        choice = input("Choice: ")
+
+        if choice == "1":
+            idx = int(input("Item number: ")) - 1
+            new_qty = int(input("New quantity: "))
+            if new_qty > 0:
+                cart[idx]["quantity"] = new_qty
+                audit(f"Quantity updated for {cart[idx]['name']}")
+        elif choice == "2":
+            return
