@@ -1,92 +1,95 @@
-from storage import load_orders, save_orders
-from utils import audit, timestamp
+import random
+import csv
+import os
 from collections import defaultdict
 from datetime import date
+from storage import load_orders, save_orders
+from utils import audit, timestamp
+from security import validate_card_number, validate_cvv, validate_expiry
 
 
+
+
+# ===============================
+# HELPER FUNCTIONS
+# ===============================
+
+def _generate_order_id():
+    return f"ORD{random.randint(10000, 99999)}"
+
+
+def calculate_tax(amount):
+    """GST calculation (2.5% CGST + 2.5% SGST)"""
+    cgst = amount * 0.025
+    sgst = amount * 0.025
+    return cgst, sgst, cgst + sgst
+
+
+
+
+
+# ===============================
+# CHECKOUT
+# ===============================
 
 def checkout(cart, contact):
     if not cart:
         print("Cart empty.")
         return
 
-    print("\n BILL DETAILS")
-    print("-" * 45)
-
-    subtotal = 0.0
+    subtotal = sum(item["price"] * item["quantity"] for item in cart)
     discount_total = 0.0
 
-    # -------------------------------
-    # Item-level calculation
-    # -------------------------------
     for item in cart:
-        item_total = item["price"] * item["quantity"]
-        subtotal += item_total
-
-        # Bulk discount rule (10% if qty >= 5)
         if item["quantity"] >= 5:
-            item_discount = item_total * 0.10
-            discount_total += item_discount
-            print(
-                f"{item['name']} x{item['quantity']} = ₹{item_total:.2f} "
-                f"(Bulk discount: -₹{item_discount:.2f})"
-            )
-        else:
-            print(f"{item['name']} x{item['quantity']} = ₹{item_total:.2f}")
+            discount_total += item["price"] * item["quantity"] * 0.10
 
-    # -------------------------------
-    # Cart-level discount
-    # -------------------------------
     if subtotal >= 100:
         discount_total += 10
-        print("Cart Offer Applied: -₹10.00")
 
-    # -------------------------------
-    # Coupon discount
-    # -------------------------------
-    coupon_discount = 0.0
-    use_coupon = input("\nDo you have a coupon code? (y/n): ").lower()
-
-    if use_coupon == "y":
-        code = input("Enter coupon code: ").upper()
-
-        if code == "SAVE10" and subtotal >= 50:
-            coupon_discount = 10
-            print("Coupon SAVE10 applied: -₹10.00")
-        elif code == "STUDENT5":
-            coupon_discount = subtotal * 0.05
-            print(f"Coupon STUDENT5 applied: -₹{coupon_discount:.2f}")
-        else:
-            print("Invalid or ineligible coupon.")
-
-        discount_total += coupon_discount
-
-    # -------------------------------
-    # Loyalty discount (5% if >= 3 past orders)
-    # -------------------------------
     past_orders = load_orders()
-    order_count = sum(1 for o in past_orders if o["customer"] == contact)
+    if sum(1 for o in past_orders if o["customer"] == contact) >= 3:
+        discount_total += subtotal * 0.05
 
-    loyalty_discount = 0.0
-    if order_count >= 3:
-        loyalty_discount = subtotal * 0.05
-        discount_total += loyalty_discount
-        print(f"Loyalty discount applied: -₹{loyalty_discount:.2f}")
+    taxable = subtotal - discount_total
+    cgst, sgst, tax_total = calculate_tax(taxable)
+    final_total = taxable + tax_total
 
-    # -------------------------------
-    # Final totals
-    # -------------------------------
-    final_total = subtotal - discount_total
-
-    print("-" * 45)
-    print(f"Subtotal : ₹{subtotal:.2f}")
-    print(f"Discount : -₹{discount_total:.2f}")
-    print(f"Total    : ₹{final_total:.2f}")
-
-    # -------------------------------
-    # Payment
-    # -------------------------------
+    # Payment (simplified success assumed here)
     method = input("\nPayment (card/cash): ").lower()
-    if method not in ["card", "cash"]:
-        print("Invalid payment method.")
-        return
+    if method == "card":
+        while True:
+            card = input("Card number (16 digits): ")
+            if not validate_card_number(card):
+                print("Invalid card.")
+                continue
+            expiry = input("Expiry (MM/YY): ")
+            if not validate_expiry(expiry):
+                print("Invalid expiry.")
+                continue
+            cvv = input("CVV: ")
+            if not validate_cvv(cvv):
+                print("Invalid CVV.")
+                continue
+            break
+
+    order = {
+        "order_id": _generate_order_id(),
+        "customer": contact,
+        "items": cart.copy(),
+        "subtotal": subtotal,
+        "discount": discount_total,
+        "tax": {"cgst": cgst, "sgst": sgst, "total": tax_total},
+        "total": final_total,
+        "payment": method,
+        "time": timestamp()
+    }
+
+    orders = load_orders()
+    orders.append(order)
+    save_orders(orders)
+
+    audit(f"Order {order['order_id']} placed by {contact}")
+    cart.clear()
+
+
