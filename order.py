@@ -72,3 +72,13 @@ def checkout(cart, contact):
         loyalty_discount = subtotal * 0.05
         discount_total += loyalty_discount
         print(f"Loyalty discount applied: -₹{loyalty_discount:.2f}")
+
+    # -------------------------------
+    # Final totals
+    # -------------------------------
+    final_total = subtotal - discount_total
+
+    print("-" * 45)
+    print(f"Subtotal : ₹{subtotal:.2f}")
+    print(f"Discount : -₹{discount_total:.2f}")
+    print(f"Total    : ₹{final_total:.2f}")
