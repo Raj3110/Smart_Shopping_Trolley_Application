@@ -6,6 +6,12 @@ from datetime import date
 from storage import load_orders, save_orders
 from utils import audit, timestamp
 from security import validate_card_number, validate_cvv, validate_expiry
+try:
+    from reportlab.lib.pagesizes import A4
+    from reportlab.pdfgen import canvas
+    PDF_AVAILABLE = True
+except ImportError:
+    PDF_AVAILABLE = False
 
 RECEIPT_DIR = "receipts"
 
@@ -157,4 +163,52 @@ def save_receipt_txt(order):
         f.write("=" * 40 + "\n")
 
     print(f" Receipt saved as text: {path}")
+
+def save_receipt_pdf(order):
+    if not PDF_AVAILABLE:
+        print(" PDF receipt not available (reportlab not installed).")
+        return
+
+    os.makedirs(RECEIPT_DIR, exist_ok=True)
+    filename = os.path.join(RECEIPT_DIR, f"{order['order_id']}.pdf")
+
+    c = canvas.Canvas(filename, pagesize=A4)
+    text = c.beginText(40, 800)
+
+
+    lines = [
+        "SMART MART",
+        "Smart Shopping Trolley System",
+        "=" * 40,
+        f"Receipt No : {order['order_id']}",
+        f"Date       : {order['time']}",
+        f"Customer   : {order['customer']}",
+        f"Payment    : {order['payment'].upper()}",
+        "-" * 40,
+    ]
+
+    for item in order["items"]:
+        total = item["price"] * item["quantity"]
+        lines.append(f"{item['name']} x{item['quantity']} = ₹{total:.2f}")
+
+    lines.extend([
+        "-" * 40,
+        f"Subtotal   : ₹{order['subtotal']:.2f}",
+        f"Discount   : -₹{order['discount']:.2f}",
+        f"CGST (2.5%): ₹{order['tax']['cgst']:.2f}",
+        f"SGST (2.5%): ₹{order['tax']['sgst']:.2f}",
+        "-" * 40,
+        f"TOTAL      : ₹{order['total']:.2f}",
+        "=" * 40,
+        "Thank you! Visit again."
+    ])
+
+    for line in lines:
+        text.textLine(line)
+
+    c.drawText(text)
+    c.showPage()
+    c.save()
+
+    print(f" Receipt saved as PDF: {filename}")
 
