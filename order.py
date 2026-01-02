@@ -82,3 +82,11 @@ def checkout(cart, contact):
     print(f"Subtotal : ₹{subtotal:.2f}")
     print(f"Discount : -₹{discount_total:.2f}")
     print(f"Total    : ₹{final_total:.2f}")
+
+    # -------------------------------
+    # Payment
+    # -------------------------------
+    method = input("\nPayment (card/cash): ").lower()
+    if method not in ["card", "cash"]:
+        print("Invalid payment method.")
+        return
