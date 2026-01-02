@@ -72,8 +72,3 @@ def checkout(cart, contact):
         loyalty_discount = subtotal * 0.05
         discount_total += loyalty_discount
         print(f"Loyalty discount applied: -₹{loyalty_discount:.2f}")
-
-def calculate_tax(amount):
-    cgst = amount * 0.025
-    sgst = amount * 0.025
-    return cgst, sgst, cgst + sgst
