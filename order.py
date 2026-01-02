@@ -1,6 +1,8 @@
-import random
+from storage import load_orders, save_orders
+from utils import audit, timestamp
 from collections import defaultdict
 from datetime import date
+
 
 
 def checkout(cart, contact):
