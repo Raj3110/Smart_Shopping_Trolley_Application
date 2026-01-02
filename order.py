@@ -60,3 +60,15 @@ def checkout(cart, contact):
             print("Invalid or ineligible coupon.")
 
         discount_total += coupon_discount
+
+    # -------------------------------
+    # Loyalty discount (5% if >= 3 past orders)
+    # -------------------------------
+    past_orders = load_orders()
+    order_count = sum(1 for o in past_orders if o["customer"] == contact)
+
+    loyalty_discount = 0.0
+    if order_count >= 3:
+        loyalty_discount = subtotal * 0.05
+        discount_total += loyalty_discount
+        print(f"Loyalty discount applied: -₹{loyalty_discount:.2f}")
