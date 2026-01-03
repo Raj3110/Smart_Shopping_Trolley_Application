@@ -288,6 +288,9 @@ def export_analytics_csv(filename="sales_analytics.csv"):
     if not orders:
         print("No data to export.")
         return
+    for o in orders:
+        contact = o["customer"]
+        total = o["total"]
 
     with open(filename, "w", newline="") as f:
         writer = csv.writer(f)
