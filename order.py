@@ -13,6 +13,8 @@ try:
 except ImportError:
     PDF_AVAILABLE = False
 
+
+
 RECEIPT_DIR = "receipts"
 
 
@@ -31,7 +33,121 @@ def calculate_tax(amount):
     return cgst, sgst, cgst + sgst
 
 
+def print_receipt(order):
+    print("\n" + "=" * 50)
+    print("               SMART MART")
+    print("         Smart Shopping Trolley System")
+    print("=" * 50)
+    print(f"Receipt No   : {order['order_id']}")
+    print(f"Date & Time  : {order['time']}")
+    print(f"Customer     : {order['customer']}")
+    print(f"Payment Mode : {order['payment'].upper()}")
+    print("Transaction  : SUCCESS")
+    print("-" * 50)
+    print("{:<18} {:<5} {:<10} {:<10}".format(
+        "Item", "Qty", "Price", "Total"
+    ))
+    print("-" * 50)
 
+    for item in order["items"]:
+        line_total = item["price"] * item["quantity"]
+        print("{:<18} {:<5} {:<10.2f} {:<10.2f}".format(
+            item["name"],
+            item["quantity"],
+            item["price"],
+            line_total
+        ))
+
+    print("-" * 50)
+    print(f"{'Subtotal':<35} ₹{order['subtotal']:.2f}")
+    print(f"{'Discount':<35} -₹{order['discount']:.2f}")
+    print(f"{'CGST (2.5%)':<35} ₹{order['tax']['cgst']:.2f}")
+    print(f"{'SGST (2.5%)':<35} ₹{order['tax']['sgst']:.2f}")
+    print("-" * 50)
+    print(f"{'TOTAL PAYABLE':<35} ₹{order['total']:.2f}")
+    print("=" * 50)
+    print("Thank you for shopping with Smart Mart!")
+    print("Visit again")
+    print("=" * 50)
+
+
+def save_receipt_txt(order):
+    os.makedirs(RECEIPT_DIR, exist_ok=True)
+    path = os.path.join(RECEIPT_DIR, f"{order['order_id']}.txt")
+
+    with open(path, "w", encoding="utf-8") as f:
+        f.write("SMART MART\n")
+        f.write("Smart Shopping Trolley System\n")
+        f.write("=" * 40 + "\n")
+        f.write(f"Receipt No : {order['order_id']}\n")
+        f.write(f"Date       : {order['time']}\n")
+        f.write(f"Customer   : {order['customer']}\n")
+        f.write(f"Payment    : {order['payment'].upper()}\n")
+        f.write("-" * 40 + "\n")
+
+        for item in order["items"]:
+            total = item["price"] * item["quantity"]
+            f.write(f"{item['name']} x{item['quantity']} = ₹{total:.2f}\n")
+
+        f.write("-" * 40 + "\n")
+        f.write(f"Subtotal   : ₹{order['subtotal']:.2f}\n")
+        f.write(f"Discount   : -₹{order['discount']:.2f}\n")
+        f.write(f"CGST (2.5%): ₹{order['tax']['cgst']:.2f}\n")
+        f.write(f"SGST (2.5%): ₹{order['tax']['sgst']:.2f}\n")
+        f.write("-" * 40 + "\n")
+        f.write(f"TOTAL      : ₹{order['total']:.2f}\n")
+        f.write("=" * 40 + "\n")
+
+    print(f" Receipt saved as text: {path}")
+
+
+def save_receipt_pdf(order):
+    if not PDF_AVAILABLE:
+        print(" PDF receipt not available (reportlab not installed).")
+        return
+
+    os.makedirs(RECEIPT_DIR, exist_ok=True)
+    filename = os.path.join(RECEIPT_DIR, f"{order['order_id']}.pdf")
+
+    c = canvas.Canvas(filename, pagesize=A4)
+    text = c.beginText(40, 800)
+
+
+    lines = [
+        "SMART MART",
+        "Smart Shopping Trolley System",
+        "=" * 40,
+        f"Receipt No : {order['order_id']}",
+        f"Date       : {order['time']}",
+        f"Customer   : {order['customer']}",
+        f"Payment    : {order['payment'].upper()}",
+        "-" * 40,
+    ]
+
+    for item in order["items"]:
+        total = item["price"] * item["quantity"]
+        lines.append(f"{item['name']} x{item['quantity']} = ₹{total:.2f}")
+
+    lines.extend([
+        "-" * 40,
+        f"Subtotal   : ₹{order['subtotal']:.2f}",
+        f"Discount   : -₹{order['discount']:.2f}",
+        f"CGST (2.5%): ₹{order['tax']['cgst']:.2f}",
+        f"SGST (2.5%): ₹{order['tax']['sgst']:.2f}",
+        "-" * 40,
+        f"TOTAL      : ₹{order['total']:.2f}",
+        "=" * 40,
+        "Thank you! Visit again."
+    ])
+
+    for line in lines:
+        text.textLine(line)
+
+    c.drawText(text)
+    c.showPage()
+    c.save()
+
+    print(f" Receipt saved as PDF: {filename}")
 
 
 # ===============================
@@ -98,117 +214,23 @@ def checkout(cart, contact):
     audit(f"Order {order['order_id']} placed by {contact}")
     cart.clear()
 
-def print_receipt(order):
-    print("\n" + "=" * 50)
-    print("               SMART MART")
-    print("         Smart Shopping Trolley System")
-    print("=" * 50)
-    print(f"Receipt No   : {order['order_id']}")
-    print(f"Date & Time  : {order['time']}")
-    print(f"Customer     : {order['customer']}")
-    print(f"Payment Mode : {order['payment'].upper()}")
-    print("Transaction  : SUCCESS")
-    print("-" * 50)
-    print("{:<18} {:<5} {:<10} {:<10}".format(
-        "Item", "Qty", "Price", "Total"
-    ))
-    print("-" * 50)
+    # Receipt choice
+    choice = input(
+        "\nReceipt options:\n"
+        "1. Print on screen\n"
+        "2. Save as text\n"
+        "3. Save as PDF\n"
+        "4. Skip\n"
+        "Choice: "
+    )
 
-    for item in order["items"]:
-        line_total = item["price"] * item["quantity"]
-        print("{:<18} {:<5} {:<10.2f} {:<10.2f}".format(
-            item["name"],
-            item["quantity"],
-            item["price"],
-            line_total
-        ))
-
-    print("-" * 50)
-    print(f"{'Subtotal':<35} ₹{order['subtotal']:.2f}")
-    print(f"{'Discount':<35} -₹{order['discount']:.2f}")
-    print(f"{'CGST (2.5%)':<35} ₹{order['tax']['cgst']:.2f}")
-    print(f"{'SGST (2.5%)':<35} ₹{order['tax']['sgst']:.2f}")
-    print("-" * 50)
-    print(f"{'TOTAL PAYABLE':<35} ₹{order['total']:.2f}")
-    print("=" * 50)
-    print("Thank you for shopping with Smart Mart!")
-    print("Visit again")
-    print("=" * 50)
-
-def save_receipt_txt(order):
-    os.makedirs(RECEIPT_DIR, exist_ok=True)
-    path = os.path.join(RECEIPT_DIR, f"{order['order_id']}.txt")
-
-    with open(path, "w", encoding="utf-8") as f:
-        f.write("SMART MART\n")
-        f.write("Smart Shopping Trolley System\n")
-        f.write("=" * 40 + "\n")
-        f.write(f"Receipt No : {order['order_id']}\n")
-        f.write(f"Date       : {order['time']}\n")
-        f.write(f"Customer   : {order['customer']}\n")
-        f.write(f"Payment    : {order['payment'].upper()}\n")
-        f.write("-" * 40 + "\n")
-
-        for item in order["items"]:
-            total = item["price"] * item["quantity"]
-            f.write(f"{item['name']} x{item['quantity']} = ₹{total:.2f}\n")
-
-        f.write("-" * 40 + "\n")
-        f.write(f"Subtotal   : ₹{order['subtotal']:.2f}\n")
-        f.write(f"Discount   : -₹{order['discount']:.2f}\n")
-        f.write(f"CGST (2.5%): ₹{order['tax']['cgst']:.2f}\n")
-        f.write(f"SGST (2.5%): ₹{order['tax']['sgst']:.2f}\n")
-        f.write("-" * 40 + "\n")
-        f.write(f"TOTAL      : ₹{order['total']:.2f}\n")
-        f.write("=" * 40 + "\n")
-
-    print(f" Receipt saved as text: {path}")
-
-def save_receipt_pdf(order):
-    if not PDF_AVAILABLE:
-        print(" PDF receipt not available (reportlab not installed).")
-        return
-
-    os.makedirs(RECEIPT_DIR, exist_ok=True)
-    filename = os.path.join(RECEIPT_DIR, f"{order['order_id']}.pdf")
-
-    c = canvas.Canvas(filename, pagesize=A4)
-    text = c.beginText(40, 800)
-
-
-    lines = [
-        "SMART MART",
-        "Smart Shopping Trolley System",
-        "=" * 40,
-        f"Receipt No : {order['order_id']}",
-        f"Date       : {order['time']}",
-        f"Customer   : {order['customer']}",
-        f"Payment    : {order['payment'].upper()}",
-        "-" * 40,
-    ]
-
-    for item in order["items"]:
-        total = item["price"] * item["quantity"]
-        lines.append(f"{item['name']} x{item['quantity']} = ₹{total:.2f}")
-
-    lines.extend([
-        "-" * 40,
-        f"Subtotal   : ₹{order['subtotal']:.2f}",
-        f"Discount   : -₹{order['discount']:.2f}",
-        f"CGST (2.5%): ₹{order['tax']['cgst']:.2f}",
-        f"SGST (2.5%): ₹{order['tax']['sgst']:.2f}",
-        "-" * 40,
-        f"TOTAL      : ₹{order['total']:.2f}",
-        "=" * 40,
-        "Thank you! Visit again."
-    ])
-
-    for line in lines:
-        text.textLine(line)
-
-    c.drawText(text)
-    c.showPage()
-    c.save()
-
-    print(f" Receipt saved as PDF: {filename}")
+    if choice == "1":
+        print_receipt(order)
+    elif choice == "2":
+        save_receipt_txt(order)
+    elif choice == "3":
+        if PDF_AVAILABLE:
+            save_receipt_pdf(order)
+        else:
+            print("PDF option unavailable on this system.")
 
