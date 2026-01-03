@@ -7,7 +7,7 @@ from storage import load_orders, save_orders
 from utils import audit, timestamp
 from security import validate_card_number, validate_cvv, validate_expiry
 
-
+RECEIPT_DIR = "receipts"
 
 
 # ===============================
@@ -129,4 +129,32 @@ def print_receipt(order):
     print("Visit again")
     print("=" * 50)
 
+def save_receipt_txt(order):
+    os.makedirs(RECEIPT_DIR, exist_ok=True)
+    path = os.path.join(RECEIPT_DIR, f"{order['order_id']}.txt")
+
+    with open(path, "w", encoding="utf-8") as f:
+        f.write("SMART MART\n")
+        f.write("Smart Shopping Trolley System\n")
+        f.write("=" * 40 + "\n")
+        f.write(f"Receipt No : {order['order_id']}\n")
+        f.write(f"Date       : {order['time']}\n")
+        f.write(f"Customer   : {order['customer']}\n")
+        f.write(f"Payment    : {order['payment'].upper()}\n")
+        f.write("-" * 40 + "\n")
+
+        for item in order["items"]:
+            total = item["price"] * item["quantity"]
+            f.write(f"{item['name']} x{item['quantity']} = ₹{total:.2f}\n")
+
+        f.write("-" * 40 + "\n")
+        f.write(f"Subtotal   : ₹{order['subtotal']:.2f}\n")
+        f.write(f"Discount   : -₹{order['discount']:.2f}\n")
+        f.write(f"CGST (2.5%): ₹{order['tax']['cgst']:.2f}\n")
+        f.write(f"SGST (2.5%): ₹{order['tax']['sgst']:.2f}\n")
+        f.write("-" * 40 + "\n")
+        f.write(f"TOTAL      : ₹{order['total']:.2f}\n")
+        f.write("=" * 40 + "\n")
+
+    print(f" Receipt saved as text: {path}")
 
