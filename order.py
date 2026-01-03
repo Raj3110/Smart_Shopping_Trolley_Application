@@ -269,3 +269,29 @@ def view_orders():
     if updated:
         save_orders(orders)
 
+
+def export_analytics_csv(filename="sales_analytics.csv"):
+    orders = load_orders()
+    if not orders:
+        print("No data to export.")
+        return
+
+    with open(filename, "w", newline="") as f:
+        writer = csv.writer(f)
+        writer.writerow([
+            "Order ID", "Customer", "Payment",
+            "Subtotal", "Discount", "Total", "Date"
+        ])
+
+        for o in orders:
+            writer.writerow([
+                o.get("order_id", "NA"),
+                o["customer"],
+                o["payment"],
+                o.get("subtotal", 0),
+                o.get("discount", 0),
+                o["total"],
+                o["time"]
+            ])
+
+    print(f" Analytics exported successfully to {filename}")
