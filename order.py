@@ -283,6 +283,25 @@ def sales_analytics():
     payment_split = {"card": 0.0, "cash": 0.0}
     total_revenue = 0.0
 
+    for o in orders:
+        contact = o["customer"]
+        total = o["total"]
+
+        customer_stats[contact]["orders"] += 1
+        customer_stats[contact]["total"] += total
+        total_revenue += total
+
+        if o["time"].startswith(today):
+            today_revenue += total
+            today_orders += 1
+            payment_split[o["payment"]] += total
+
+    print("\n REPEATED CUSTOMERS")
+    print("{:<15} {:<10} {:<12} {:<12}".format(
+        "CONTACT", "ORDERS", "TOTAL SPENT", "AVG ORDER"
+    ))
+    print("-" * 55)
+
 def export_analytics_csv(filename="sales_analytics.csv"):
     orders = load_orders()
     if not orders:
