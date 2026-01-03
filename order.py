@@ -22,6 +22,7 @@ RECEIPT_DIR = "receipts"
 # HELPER FUNCTIONS
 # ===============================
 
+# generated prder ID prior development
 def _generate_order_id():
     return f"ORD{random.randint(10000, 99999)}"
 
