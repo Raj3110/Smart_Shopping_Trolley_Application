@@ -302,6 +302,13 @@ def sales_analytics():
     ))
     print("-" * 55)
 
+    for contact, data in customer_stats.items():
+        if data["orders"] > 1:
+            avg = data["total"] / data["orders"]
+            print("{:<15} {:<10} {:<12.2f} {:<12.2f}".format(
+                contact, data["orders"], data["total"], avg
+            ))
+
 def export_analytics_csv(filename="sales_analytics.csv"):
     orders = load_orders()
     if not orders:
