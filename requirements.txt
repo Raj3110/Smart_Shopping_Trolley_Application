@@ -1,0 +1,24 @@
+# requirements for Smart Trolley
+# Recommended Python: 3.8+
+reportlab>=3.6.12
+pytest>=7.0
+
+# Optional dev tools
+pytest-cov>=4.0.0
+flake8>=6.0.0
+
+# -------------------------
+# Commands (run from project root: directory that contains the package folder `smart_trolley`)
+# -------------------------
+# Create & activate venv (Windows)
+# python -m venv .venv
+# .venv\Scripts\activate
+
+# Install dependencies
+# pip install -r requirements.txt
+
+# Run the application
+# python -m smart_trolley.main
+
+# Run test suite
+# pytest

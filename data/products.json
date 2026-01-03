@@ -1,0 +1,507 @@
+[
+    {
+        "name": "Apple",
+        "price": 12.0,
+        "code": "10001"
+    },
+    {
+        "name": "Banana",
+        "price": 10.0,
+        "code": "10002"
+    },
+    {
+        "name": "Orange",
+        "price": 15.0,
+        "code": "10003"
+    },
+    {
+        "name": "Grapes",
+        "price": 18.0,
+        "code": "10004"
+    },
+    {
+        "name": "Pineapple",
+        "price": 40.0,
+        "code": "10005"
+    },
+    {
+        "name": "Mango",
+        "price": 30.0,
+        "code": "10006"
+    },
+    {
+        "name": "Watermelon",
+        "price": 45.0,
+        "code": "10007"
+    },
+    {
+        "name": "Papaya",
+        "price": 25.0,
+        "code": "10008"
+    },
+    {
+        "name": "Strawberry Pack",
+        "price": 50.0,
+        "code": "10009"
+    },
+    {
+        "name": "Blueberry Pack",
+        "price": 70.0,
+        "code": "10010"
+    },
+    {
+        "name": "Tomato",
+        "price": 8.0,
+        "code": "10011"
+    },
+    {
+        "name": "Potato",
+        "price": 6.0,
+        "code": "10012"
+    },
+    {
+        "name": "Onion",
+        "price": 7.0,
+        "code": "10013"
+    },
+    {
+        "name": "Carrot",
+        "price": 9.0,
+        "code": "10014"
+    },
+    {
+        "name": "Cabbage",
+        "price": 12.0,
+        "code": "10015"
+    },
+    {
+        "name": "Cauliflower",
+        "price": 15.0,
+        "code": "10016"
+    },
+    {
+        "name": "Spinach Bunch",
+        "price": 10.0,
+        "code": "10017"
+    },
+    {
+        "name": "Green Chilli",
+        "price": 5.0,
+        "code": "10018"
+    },
+    {
+        "name": "Capsicum",
+        "price": 14.0,
+        "code": "10019"
+    },
+    {
+        "name": "Brinjal",
+        "price": 11.0,
+        "code": "10020"
+    },
+    {
+        "name": "Rice 1kg",
+        "price": 55.0,
+        "code": "10021"
+    },
+    {
+        "name": "Wheat Flour 1kg",
+        "price": 45.0,
+        "code": "10022"
+    },
+    {
+        "name": "Sugar 1kg",
+        "price": 40.0,
+        "code": "10023"
+    },
+    {
+        "name": "Salt 1kg",
+        "price": 20.0,
+        "code": "10024"
+    },
+    {
+        "name": "Cooking Oil 1L",
+        "price": 120.0,
+        "code": "10025"
+    },
+    {
+        "name": "Toor Dal 1kg",
+        "price": 110.0,
+        "code": "10026"
+    },
+    {
+        "name": "Chana Dal 1kg",
+        "price": 95.0,
+        "code": "10027"
+    },
+    {
+        "name": "Moong Dal 1kg",
+        "price": 105.0,
+        "code": "10028"
+    },
+    {
+        "name": "Tea Powder 250g",
+        "price": 85.0,
+        "code": "10029"
+    },
+    {
+        "name": "Coffee Powder 200g",
+        "price": 95.0,
+        "code": "10030"
+    },
+    {
+        "name": "Milk 1L",
+        "price": 28.0,
+        "code": "10031"
+    },
+    {
+        "name": "Curd 500ml",
+        "price": 22.0,
+        "code": "10032"
+    },
+    {
+        "name": "Butter 100g",
+        "price": 45.0,
+        "code": "10033"
+    },
+    {
+        "name": "Cheese Slices",
+        "price": 75.0,
+        "code": "10034"
+    },
+    {
+        "name": "Paneer 200g",
+        "price": 80.0,
+        "code": "10035"
+    },
+    {
+        "name": "Eggs Pack (6)",
+        "price": 36.0,
+        "code": "10036"
+    },
+    {
+        "name": "Ice Cream Cup",
+        "price": 30.0,
+        "code": "10037"
+    },
+    {
+        "name": "Flavoured Yogurt",
+        "price": 35.0,
+        "code": "10038"
+    },
+    {
+        "name": "Ghee 200ml",
+        "price": 130.0,
+        "code": "10039"
+    },
+    {
+        "name": "Cream 100ml",
+        "price": 40.0,
+        "code": "10040"
+    },
+    {
+        "name": "Biscuits Pack",
+        "price": 20.0,
+        "code": "10041"
+    },
+    {
+        "name": "Chocolate Bar",
+        "price": 25.0,
+        "code": "10042"
+    },
+    {
+        "name": "Potato Chips",
+        "price": 30.0,
+        "code": "10043"
+    },
+    {
+        "name": "Popcorn Pack",
+        "price": 35.0,
+        "code": "10044"
+    },
+    {
+        "name": "Instant Noodles",
+        "price": 15.0,
+        "code": "10045"
+    },
+    {
+        "name": "Pasta Pack",
+        "price": 55.0,
+        "code": "10046"
+    },
+    {
+        "name": "Ketchup Bottle",
+        "price": 65.0,
+        "code": "10047"
+    },
+    {
+        "name": "Jam Bottle",
+        "price": 70.0,
+        "code": "10048"
+    },
+    {
+        "name": "Peanut Butter",
+        "price": 90.0,
+        "code": "10049"
+    },
+    {
+        "name": "Cornflakes 500g",
+        "price": 110.0,
+        "code": "10050"
+    },
+    {
+        "name": "Mineral Water 1L",
+        "price": 20.0,
+        "code": "10051"
+    },
+    {
+        "name": "Soft Drink Can",
+        "price": 35.0,
+        "code": "10052"
+    },
+    {
+        "name": "Fruit Juice Pack",
+        "price": 40.0,
+        "code": "10053"
+    },
+    {
+        "name": "Energy Drink",
+        "price": 85.0,
+        "code": "10054"
+    },
+    {
+        "name": "Green Tea Box",
+        "price": 95.0,
+        "code": "10055"
+    },
+    {
+        "name": "Bath Soap",
+        "price": 30.0,
+        "code": "10056"
+    },
+    {
+        "name": "Shampoo Sachet",
+        "price": 10.0,
+        "code": "10057"
+    },
+    {
+        "name": "Shampoo Bottle",
+        "price": 95.0,
+        "code": "10058"
+    },
+    {
+        "name": "Toothpaste",
+        "price": 55.0,
+        "code": "10059"
+    },
+    {
+        "name": "Toothbrush",
+        "price": 25.0,
+        "code": "10060"
+    },
+    {
+        "name": "Detergent Powder 1kg",
+        "price": 90.0,
+        "code": "10061"
+    },
+    {
+        "name": "Dishwash Liquid",
+        "price": 65.0,
+        "code": "10062"
+    },
+    {
+        "name": "Floor Cleaner",
+        "price": 85.0,
+        "code": "10063"
+    },
+    {
+        "name": "Garbage Bags Pack",
+        "price": 40.0,
+        "code": "10064"
+    },
+    {
+        "name": "Tissue Paper Box",
+        "price": 35.0,
+        "code": "10065"
+    },
+    {
+        "name": "LED Bulb",
+        "price": 120.0,
+        "code": "10066"
+    },
+    {
+        "name": "Extension Board",
+        "price": 180.0,
+        "code": "10067"
+    },
+    {
+        "name": "Mobile Charger",
+        "price": 250.0,
+        "code": "10068"
+    },
+    {
+        "name": "USB Cable",
+        "price": 120.0,
+        "code": "10069"
+    },
+    {
+        "name": "Power Bank",
+        "price": 950.0,
+        "code": "10070"
+    },
+    {
+        "name": "Notebook",
+        "price": 40.0,
+        "code": "10071"
+    },
+    {
+        "name": "Pen Pack",
+        "price": 25.0,
+        "code": "10072"
+    },
+    {
+        "name": "Pencil Box",
+        "price": 30.0,
+        "code": "10073"
+    },
+    {
+        "name": "Eraser Pack",
+        "price": 15.0,
+        "code": "10074"
+    },
+    {
+        "name": "Stapler",
+        "price": 65.0,
+        "code": "10075"
+    },
+    {
+        "name": "Face Mask Pack",
+        "price": 50.0,
+        "code": "10076"
+    },
+    {
+        "name": "Hand Sanitizer",
+        "price": 35.0,
+        "code": "10077"
+    },
+    {
+        "name": "Hand Wash",
+        "price": 45.0,
+        "code": "10078"
+    },
+    {
+        "name": "Mosquito Repellent",
+        "price": 70.0,
+        "code": "10079"
+    },
+    {
+        "name": "First Aid Kit",
+        "price": 120.0,
+        "code": "10080"
+    },
+    {
+        "name": "Pet Food Pack",
+        "price": 220.0,
+        "code": "10081"
+    },
+    {
+        "name": "Baby Diapers Pack",
+        "price": 350.0,
+        "code": "10082"
+    },
+    {
+        "name": "Baby Wipes",
+        "price": 90.0,
+        "code": "10083"
+    },
+    {
+        "name": "Hair Oil",
+        "price": 75.0,
+        "code": "10084"
+    },
+    {
+        "name": "Body Lotion",
+        "price": 110.0,
+        "code": "10085"
+    },
+    {
+        "name": "Frozen Peas",
+        "price": 65.0,
+        "code": "10086"
+    },
+    {
+        "name": "Frozen Fries",
+        "price": 90.0,
+        "code": "10087"
+    },
+    {
+        "name": "Chicken Nuggets",
+        "price": 160.0,
+        "code": "10088"
+    },
+    {
+        "name": "Veg Burger Patty",
+        "price": 130.0,
+        "code": "10089"
+    },
+    {
+        "name": "Ice Cubes Pack",
+        "price": 30.0,
+        "code": "10090"
+    },
+    {
+        "name": "Almonds 250g",
+        "price": 220.0,
+        "code": "10091"
+    },
+    {
+        "name": "Cashews 250g",
+        "price": 240.0,
+        "code": "10092"
+    },
+    {
+        "name": "Raisins 200g",
+        "price": 110.0,
+        "code": "10093"
+    },
+    {
+        "name": "Dates 250g",
+        "price": 130.0,
+        "code": "10094"
+    },
+    {
+        "name": "Walnuts 200g",
+        "price": 260.0,
+        "code": "10095"
+    },
+    {
+        "name": "Cooking Spatula",
+        "price": 60.0,
+        "code": "10096"
+    },
+    {
+        "name": "Kitchen Knife",
+        "price": 150.0,
+        "code": "10097"
+    },
+    {
+        "name": "Lunch Box",
+        "price": 180.0,
+        "code": "10098"
+    },
+    {
+        "name": "Water Bottle",
+        "price": 120.0,
+        "code": "10099"
+    },
+    {
+        "name": "Thermos Flask",
+        "price": 350.0,
+        "code": "10100"
+    },
+    {
+        "name": "laptop",
+        "price": 5000.0,
+        "code": "99999"
+    }
+]
