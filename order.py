@@ -236,3 +236,36 @@ def checkout(cart, contact):
         else:
             print("PDF option unavailable on this system.")
 
+# ===============================
+# ADMIN / ANALYTICS FUNCTIONS
+# ===============================
+
+def view_orders():
+    orders = load_orders()
+    if not orders:
+        print("No orders.")
+        return
+
+    print("\n{:<10} {:<15} {:<8} {:<10} {}".format(
+        "ORDER ID", "CONTACT", "PAYMENT", "TOTAL", "DATE"
+    ))
+    print("-" * 70)
+
+    updated = False
+
+    for idx, o in enumerate(orders, start=1):
+        if "order_id" not in o:
+            o["order_id"] = f"LEGACY{idx:04d}"
+            updated = True
+
+        print("{:<10} {:<15} {:<8} {:<10} {}".format(
+            o["order_id"],
+            o["customer"],
+            o["payment"],
+            f"{o['total']} (−{o.get('discount', 0)})",
+            o["time"]
+        ))
+
+    if updated:
+        save_orders(orders)
+
