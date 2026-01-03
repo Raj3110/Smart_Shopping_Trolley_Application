@@ -92,4 +92,41 @@ def checkout(cart, contact):
     audit(f"Order {order['order_id']} placed by {contact}")
     cart.clear()
 
+def print_receipt(order):
+    print("\n" + "=" * 50)
+    print("               SMART MART")
+    print("         Smart Shopping Trolley System")
+    print("=" * 50)
+    print(f"Receipt No   : {order['order_id']}")
+    print(f"Date & Time  : {order['time']}")
+    print(f"Customer     : {order['customer']}")
+    print(f"Payment Mode : {order['payment'].upper()}")
+    print("Transaction  : SUCCESS")
+    print("-" * 50)
+    print("{:<18} {:<5} {:<10} {:<10}".format(
+        "Item", "Qty", "Price", "Total"
+    ))
+    print("-" * 50)
+
+    for item in order["items"]:
+        line_total = item["price"] * item["quantity"]
+        print("{:<18} {:<5} {:<10.2f} {:<10.2f}".format(
+            item["name"],
+            item["quantity"],
+            item["price"],
+            line_total
+        ))
+
+    print("-" * 50)
+    print(f"{'Subtotal':<35} ₹{order['subtotal']:.2f}")
+    print(f"{'Discount':<35} -₹{order['discount']:.2f}")
+    print(f"{'CGST (2.5%)':<35} ₹{order['tax']['cgst']:.2f}")
+    print(f"{'SGST (2.5%)':<35} ₹{order['tax']['sgst']:.2f}")
+    print("-" * 50)
+    print(f"{'TOTAL PAYABLE':<35} ₹{order['total']:.2f}")
+    print("=" * 50)
+    print("Thank you for shopping with Smart Mart!")
+    print("Visit again")
+    print("=" * 50)
+
 
