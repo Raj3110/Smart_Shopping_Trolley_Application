@@ -1,4 +1,5 @@
-from storage import load_products , save_products
+from storage import load_products, save_products
+from utils import audit
 
 def list_products():
     products = load_products()
@@ -20,7 +21,7 @@ def add_product():
 
     for p in products:
         if p["code"] == code:
-            print("❌ Scanner code already exists.")
+            print(" Scanner code already exists. Use a unique code.")
             return
 
     products.append({
@@ -30,8 +31,7 @@ def add_product():
     })
 
     save_products(products)
-    print("Product added successfully.")
-
+    print(" Product added successfully.")
 
 def update_product():
     products = list_products()
@@ -54,5 +54,6 @@ def update_product():
             p["code"] = code
 
         save_products(products)
+        audit(f"Product updated: {p['name']}")
     except:
         print("Invalid selection.")

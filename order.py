@@ -22,7 +22,6 @@ RECEIPT_DIR = "receipts"
 # HELPER FUNCTIONS
 # ===============================
 
-# generated prder ID prior development
 def _generate_order_id():
     return f"ORD{random.randint(10000, 99999)}"
 
@@ -208,7 +207,6 @@ def checkout(cart, contact):
         "time": timestamp()
     }
 
-    #loading orders also done
     orders = load_orders()
     orders.append(order)
     save_orders(orders)
@@ -235,6 +233,8 @@ def checkout(cart, contact):
             save_receipt_pdf(order)
         else:
             print("PDF option unavailable on this system.")
+
+
 
 # ===============================
 # ADMIN / ANALYTICS FUNCTIONS
@@ -268,6 +268,7 @@ def view_orders():
 
     if updated:
         save_orders(orders)
+
 
 def sales_analytics():
     orders = load_orders()
@@ -309,14 +310,28 @@ def sales_analytics():
                 contact, data["orders"], data["total"], avg
             ))
 
+    print("\n TODAY'S SALES SUMMARY")
+    print(f"Total orders today : {today_orders}")
+    print(f"Total revenue today: ₹{today_revenue}")
+    print(f"Card payments      : ₹{payment_split['card']}")
+    print(f"Cash payments      : ₹{payment_split['cash']}")
+
+    print("\n OVERALL SALES STATISTICS")
+    total_orders = len(orders)
+    avg_order_value = total_revenue / total_orders if total_orders else 0
+    top_customer = max(customer_stats.items(), key=lambda x: x[1]["orders"])
+
+    print(f"Total orders       : {total_orders}")
+    print(f"Total revenue      : ₹{total_revenue}")
+    print(f"Average order value: ₹{avg_order_value:.2f}")
+    print(f"Top customer       : {top_customer[0]} ({top_customer[1]['orders']} orders)")
+
+
 def export_analytics_csv(filename="sales_analytics.csv"):
     orders = load_orders()
     if not orders:
         print("No data to export.")
         return
-    for o in orders:
-        contact = o["customer"]
-        total = o["total"]
 
     with open(filename, "w", newline="") as f:
         writer = csv.writer(f)
@@ -337,3 +352,4 @@ def export_analytics_csv(filename="sales_analytics.csv"):
             ])
 
     print(f" Analytics exported successfully to {filename}")
+
