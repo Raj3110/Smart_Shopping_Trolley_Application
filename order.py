@@ -208,6 +208,7 @@ def checkout(cart, contact):
         "time": timestamp()
     }
 
+    #loading orders also done
     orders = load_orders()
     orders.append(order)
     save_orders(orders)
