@@ -269,6 +269,19 @@ def view_orders():
     if updated:
         save_orders(orders)
 
+def sales_analytics():
+    orders = load_orders()
+    if not orders:
+        print("No orders available for analytics.")
+        return
+
+    customer_stats = defaultdict(lambda: {"orders": 0, "total": 0.0})
+    today = str(date.today())
+
+    today_revenue = 0.0
+    today_orders = 0
+    payment_split = {"card": 0.0, "cash": 0.0}
+    total_revenue = 0.0
 
 def export_analytics_csv(filename="sales_analytics.csv"):
     orders = load_orders()
