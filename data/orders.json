@@ -1,0 +1,23 @@
+[
+    {
+        "order_id": "ORD73833",
+        "customer": "3333333333",
+        "items": [
+            {
+                "name": "orange",
+                "price": 10,
+                "quantity": 3
+            }
+        ],
+        "subtotal": 30,
+        "discount": 0.0,
+        "tax": {
+            "cgst": 0.75,
+            "sgst": 0.75,
+            "total": 1.5
+        },
+        "total": 31.5,
+        "payment": "card",
+        "time": "2026-01-03 12:24:42.523368"
+    }
+]

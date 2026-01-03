@@ -1,0 +1,88 @@
+2026-01-03 12:17:53.059592 - Customer login success: 12345678
+2026-01-03 12:18:10.042041 - Added to cart: laptop x1
+2026-01-03 12:18:25.337292 - Quantity updated for laptop
+2026-01-03 12:19:02.899377 - Order ORD66494 placed by 12345678
+2026-01-03 12:19:21.779461 - Customer logout: 12345678
+2026-01-03 12:19:28.764743 - Admin login success
+2026-01-03 12:20:15.472367 - Admin logout
+2026-01-03 12:23:31.608827 - Added to cart: apple x1
+2026-01-03 12:23:31.608827 - Added to cart: apple x3
+2026-01-03 12:23:31.608827 - Updated quantity: apple x2
+2026-01-03 12:23:31.608827 - Added to cart: apple x2
+2026-01-03 12:23:31.608827 - Removed from cart: apple
+2026-01-03 12:23:31.608827 - Reduced quantity: apple by 1
+2026-01-03 12:23:31.630517 - Order ORD4321 placed by 8888888888
+2026-01-03 12:23:31.633226 - Order ORD64700 placed by 9999999999
+2026-01-03 12:23:31.641335 - Order ORD77852 placed by 7777777777
+2026-01-03 12:23:31.647168 - Admin login success
+2026-01-03 12:23:31.648128 - Customer login success: 6303156714
+2026-01-03 12:23:31.659260 - Product updated: banana
+2026-01-03 12:23:31.662497 - Order ORD73159 placed by 9999999999
+2026-01-03 12:23:31.674976 - Order ORD4321 placed by 5555555555
+2026-01-03 12:23:31.677979 - Added to cart: apple x1
+2026-01-03 12:23:31.681894 - Added to cart: apple x2
+2026-01-03 12:23:31.681894 - Updated quantity: apple x3
+2026-01-03 12:23:31.681894 - Removed from cart: apple
+2026-01-03 12:23:31.697116 - Reduced quantity: apple by 1
+2026-01-03 12:23:31.700658 - Removed from cart: apple
+2026-01-03 12:23:31.704708 - Quantity updated for apple
+2026-01-03 12:23:31.715086 - Order ORD20408 placed by 3333333333
+2026-01-03 12:23:31.715086 - Order ORD65255 placed by 2222222222
+2026-01-03 12:23:31.715086 - Order ORD56516 placed by 1111111111
+2026-01-03 12:23:31.715086 - Order ORD1234 placed by 2222222222
+2026-01-03 12:23:31.731811 - Order ORD76210 placed by 1111111111
+2026-01-03 12:23:31.731811 - Order ORD92860 placed by 3333333333
+2026-01-03 12:24:11.392315 - Added to cart: apple x1
+2026-01-03 12:24:11.395742 - Added to cart: apple x3
+2026-01-03 12:24:11.395742 - Updated quantity: apple x2
+2026-01-03 12:24:11.395742 - Added to cart: apple x2
+2026-01-03 12:24:11.395742 - Removed from cart: apple
+2026-01-03 12:24:11.395742 - Reduced quantity: apple by 1
+2026-01-03 12:24:11.408192 - Order ORD4321 placed by 8888888888
+2026-01-03 12:24:11.412081 - Order ORD95315 placed by 9999999999
+2026-01-03 12:24:11.418448 - Order ORD92424 placed by 7777777777
+2026-01-03 12:24:11.425630 - Admin login success
+2026-01-03 12:24:11.429043 - Customer login success: 6303156714
+2026-01-03 12:24:11.437929 - Product updated: banana
+2026-01-03 12:24:11.441732 - Order ORD54533 placed by 9999999999
+2026-01-03 12:24:11.453279 - Order ORD4321 placed by 5555555555
+2026-01-03 12:24:11.459027 - Added to cart: apple x1
+2026-01-03 12:24:11.462074 - Added to cart: apple x2
+2026-01-03 12:24:11.462074 - Updated quantity: apple x3
+2026-01-03 12:24:11.472246 - Removed from cart: apple
+2026-01-03 12:24:11.477707 - Reduced quantity: apple by 1
+2026-01-03 12:24:11.479706 - Removed from cart: apple
+2026-01-03 12:24:11.490911 - Quantity updated for apple
+2026-01-03 12:24:11.495951 - Order ORD18393 placed by 3333333333
+2026-01-03 12:24:11.501868 - Order ORD73255 placed by 2222222222
+2026-01-03 12:24:11.505057 - Order ORD70547 placed by 1111111111
+2026-01-03 12:24:11.510127 - Order ORD1234 placed by 2222222222
+2026-01-03 12:24:11.512121 - Order ORD65056 placed by 1111111111
+2026-01-03 12:24:11.518045 - Order ORD79477 placed by 3333333333
+2026-01-03 12:24:42.321925 - Added to cart: apple x1
+2026-01-03 12:24:42.338027 - Added to cart: apple x3
+2026-01-03 12:24:42.339363 - Updated quantity: apple x2
+2026-01-03 12:24:42.343379 - Added to cart: apple x2
+2026-01-03 12:24:42.350379 - Removed from cart: apple
+2026-01-03 12:24:42.354418 - Reduced quantity: apple by 1
+2026-01-03 12:24:42.365887 - Order ORD4321 placed by 8888888888
+2026-01-03 12:24:42.371376 - Order ORD21489 placed by 9999999999
+2026-01-03 12:24:42.373759 - Order ORD42172 placed by 7777777777
+2026-01-03 12:24:42.390177 - Admin login success
+2026-01-03 12:24:42.390177 - Customer login success: 6303156714
+2026-01-03 12:24:42.406710 - Product updated: banana
+2026-01-03 12:24:42.421772 - Order ORD92641 placed by 9999999999
+2026-01-03 12:24:42.443491 - Order ORD4321 placed by 5555555555
+2026-01-03 12:24:42.454481 - Added to cart: apple x1
+2026-01-03 12:24:42.459645 - Added to cart: apple x2
+2026-01-03 12:24:42.459645 - Updated quantity: apple x3
+2026-01-03 12:24:42.477957 - Removed from cart: apple
+2026-01-03 12:24:42.482562 - Reduced quantity: apple by 1
+2026-01-03 12:24:42.482562 - Removed from cart: apple
+2026-01-03 12:24:42.507541 - Quantity updated for apple
+2026-01-03 12:24:42.523368 - Order ORD73833 placed by 3333333333
+2026-01-03 12:24:42.534122 - Order ORD89537 placed by 2222222222
+2026-01-03 12:24:42.543124 - Order ORD53372 placed by 1111111111
+2026-01-03 12:24:42.551932 - Order ORD1234 placed by 2222222222
+2026-01-03 12:24:42.556875 - Order ORD86122 placed by 1111111111
+2026-01-03 12:24:42.556875 - Order ORD96257 placed by 3333333333
