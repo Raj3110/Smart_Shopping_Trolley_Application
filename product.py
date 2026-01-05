@@ -9,7 +9,7 @@ def list_products():
 
     print("\nProducts:")
     for i, p in enumerate(products, 1):
-        print(f"{i}. {p['name']} | €{p['price']} | Code: {p['code']}")
+        print(f"{i}. {p['name']} | ₹{p['price']} | Code: {p['code']}")
     return products
 
 def add_product():
